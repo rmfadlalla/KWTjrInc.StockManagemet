@@ -1,0 +1,1 @@
+Whenever you work on the project, write what you plan to do in your log
