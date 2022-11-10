@@ -1,0 +1,11 @@
+11/10/22
+CISP 1010 Final Project Log - Entry 1
+
+	We've had a few meetings already, but I haven't written anything in here about them. Still, better late than never!
+	I'm planning to work on a breakdown for the project that we can work with today. I want to try to write out what a user would see using the program to get an idea what is going to be needed for it to work. If I have time, I'll try and make a more detailed pseudocode document. Either way, I plan to share what I have with the group at our meeting later.
+
+Entry 2
+I got part of the breakdown done, but it's going slower than expected. Maybe I should find a faster way to do this...
+
+Entry 3
+Got Sale class and tester done, I think we're making good progress!
