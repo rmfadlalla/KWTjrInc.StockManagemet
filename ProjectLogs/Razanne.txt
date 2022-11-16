@@ -9,3 +9,7 @@ I got part of the breakdown done, but it's going slower than expected. Maybe I s
 
 Entry 3
 Got Sale class and tester done, I think we're making good progress!
+
+11/15/22
+Entry 4
+Been working on the main class and trying to make sense of GitHub. I think the former is going better.

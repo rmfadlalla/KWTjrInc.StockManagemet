@@ -14,7 +14,7 @@ public class Sale {
         itemID = 0;
         quantity = 0;
         saleAmount = 0;
-        date = "01.01.01";
+        date = "01.01.2001";
     }
     public Sale(int saleID, int customerID, int itemID, int quantity, double saleAmount, String date) {
         this.saleID = saleID;

@@ -6,6 +6,8 @@ public class main {
     public static void main(String[] args) {
         final String USERNAME = "Admin";
         final String PASSWORD = "Swordfish";
+        ArrayList<Sale> sales = new ArrayList<>();
+        int nextSaleID = 0;
         Scanner in = new Scanner(System.in);
         boolean done = false;
         while (!done) {
@@ -17,7 +19,6 @@ public class main {
                 done = true;
             }
             else {
-                System.out.println("");
                 while (!input.equals(USERNAME)){
                     System.out.println("Error: Invalid Username, please try again");
                     System.out.print("Please enter your Username: ");
@@ -69,11 +70,11 @@ public class main {
                             while (!stockDone);
                             break;
                         case 2: //Manage Purchases
-                            boolean purchacesDone = false;
+                            boolean purchasesDone = false;
                             do {
                                 System.out.println("View / Manage Purchases");
                             }
-                            while (!purchacesDone);
+                            while (!purchasesDone);
                             break;
                         case 3: //Manage Suppliers
                             boolean suppliersDone = false;
@@ -86,6 +87,70 @@ public class main {
                             boolean salesDone = false;
                             do {
                                 System.out.println("View / Manage Sales");
+                                System.out.printf("1: Enter Sales%n2: View Sales%n3: Edit Sales%n4: Delete Sales%n5:Exit%n");
+                                choice = in.nextInt();
+                                switch (choice){
+                                    case 1: //Enter Sale
+                                        boolean ready = false;
+                                        int cID ;
+                                        int iID;
+                                        int quant;
+                                        double price;
+                                        String day;
+                                        do {
+                                            System.out.println("Enter Sale");
+                                            System.out.print("Enter the Customer ID (If not given, enter \"0\"): ");
+                                            cID = in.nextInt();
+                                            System.out.print("Enter the ID of the item purchased: ");
+                                            iID = in.nextInt();
+                                            System.out.print("Enter the quantity of the item purchased: ");
+                                            quant = in.nextInt();
+                                            System.out.print("Enter the total price of the sale: ");
+                                            price = in.nextDouble();
+                                            System.out.print("Enter the date of the sale (MM.DD.YYYY): ");
+                                            day = in.next();
+                                            System.out.println("Info entered");
+                                            /*
+                                            System.out.println("Is this correct?");
+                                            System.out.println("Customer Id: " + cID);
+                                            System.out.println("Item ID: " + iID);
+                                            System.out.println("Quantity: " + quant);
+                                            System.out.println("Sale Total: " + price);
+                                            System.out.println("Date: " + day);
+                                            */
+                                            System.out.printf("Is this correct?%nCustomer ID:%05d%nItem ID:%08d%nQuantity:%9d%nSale total:$%5.2f%nDate:%s%n(Y/N)%n", cID,iID,quant,price,day);
+                                            input = in.next();
+                                            if (input.equalsIgnoreCase("y")){
+                                                ready = true;
+                                            }
+                                        }
+                                        while (!ready);
+                                        sales.add(new Sale(nextSaleID, cID, iID, quant, price, day));
+                                        System.out.println("Sale added!");
+                                        break;
+                                    case 2: //View Sales
+                                        System.out.println("View Sales");
+                                        if (sales.size() > 0) {
+                                            int i = 0;
+                                            System.out.println("Index  Sale ID    Customer ID    Item ID    Quantity   Sale Amount    Date");
+                                            for (Sale s:sales) {
+                                                System.out.printf("%5d  %07d    %09d %09d %9d %.2f %s",i,s.getSaleID(),s.getCustomerID(),s.getItemID(),s.getQuantity(),s.getSaleAmount(),s.getDate());
+                                                i++;
+                                            }
+                                        }
+                                        else {
+                                            System.out.println("This list is empty.");
+                                        }
+                                    case 3: //Edit Sale
+                                    case 4: //Delete Sale
+                                    case 5: //Exit
+                                        System.out.println("Returning to Main Menu...");
+                                        salesDone = true;
+                                        break;
+                                    default:
+                                        System.out.println("Error: Invalid option, please try again");
+                                        break;
+                                }
                             }
                             while (!salesDone);
                             break;
