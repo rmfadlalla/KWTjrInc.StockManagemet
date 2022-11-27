@@ -192,7 +192,7 @@ public class main {
         String loc;
         do{
             System.out.print("Enter the Item Name: ");
-            iName = in.next();
+            iName = in.nextLine();
             System.out.print("Enter the Amount: ");
             amount = in.nextInt();
             System.out.print("Enter the ID Number of the Supplier: ");
@@ -283,6 +283,7 @@ public class main {
         return newLoc;
     }
 
+
     //Manage Sales
     //get input for a sale
     public static Sale newSale(int nextSaleID){
@@ -331,4 +332,7 @@ public class main {
             System.out.println("This list is empty.");
         }
     }
+
+
+    //Manage Customers
 }
