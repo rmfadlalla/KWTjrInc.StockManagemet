@@ -20,6 +20,7 @@ public class SaleTester {
         ArrayList<Sale> sales = new ArrayList<>();
         sales.add(new Sale(003, 76, 654321, 6, 22.22, "09.11.2021"));
         sales.add(new Sale(004, 95, 123456, 3, 99.97, "09.16.2021"));
+        sales.add(s1);
         System.out.println("View Sales");
         if (sales.size() > 0) {
             int i = 0;

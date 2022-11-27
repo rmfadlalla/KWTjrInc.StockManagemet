@@ -10,55 +10,60 @@ package src.main;
  * @author Kyle Wade
  */
 public class Stock {
-    private int StockID;
-    private String ItemName;
-    private int Amount;
-    private int SupplierID;
-    private String Location;
-    
-    public Stock (int StockID, String ItemName, int Amount, int SupplierID,String Location){    
-    this.StockID=StockID;
-    this.ItemName=ItemName;
-    this.Amount=Amount;
-    this.SupplierID=SupplierID;
-    this.Location=Location;
+    private int stockID;
+    private String itemName;
+    private int amount;
+    private int supplierID;
+    private String location;
+
+    //edit 11/26/2022
+    //added constructor(not overloaded), made variables lowercase, minor formatting changes
+    public Stock(){
+        stockID = 0;
+        itemName = "";
+        amount = 0;
+        supplierID = 0;
+        location = "";
+    }
+    public Stock (int stockID, String itemName, int amount, int supplierID,String location){
+        this.stockID=stockID;
+        this.itemName=itemName;
+        this.amount=amount;
+        this.supplierID=supplierID;
+        this.location=location;
     }
 
-    Stock() {
-        
-    }
     public int getStockID(){
-        return StockID;
+        return stockID;
     }
     public String getItemName(){
-        return ItemName;
+        return itemName;
     }
     public int getAmount(){
-        return Amount;
+        return amount;
     }
     public int getSupplierID(){
-        return SupplierID;
+        return supplierID;
     }
     public String getLocation(){
-        return Location;
+        return location;
     }
     public void setStockID(int newStockID){
-        this.StockID=newStockID;
+        this.stockID=newStockID;
     }
     public void setItemName(String newItemName){
-        this.ItemName=newItemName;
+        this.itemName=newItemName;
     }
     public void setAmount(int newAmount){
-        this.Amount=newAmount;
+        this.amount=newAmount;
     }
     public void setSupplierID(int newSupplierID){
-        this.SupplierID=newSupplierID;
+        this.supplierID=newSupplierID;
     }
     public void setLocation(String newLocation){
-        this.Location=newLocation;
+        this.location=newLocation;
     }
-    
-    
-    }
+
+}
     
 

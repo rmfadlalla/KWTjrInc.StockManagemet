@@ -31,7 +31,7 @@ public class main {
                 input = in.next();
                 while (!input.equals(PASSWORD)){
                     System.out.println("Error: Invalid Password, please try again");
-                    System.out.print(USERNAME + "please enter your password: ");
+                    System.out.print(USERNAME + ", please enter your password: ");
                     input = in.next();
                 }
                 //Main Menu
@@ -49,17 +49,20 @@ public class main {
                                 switch (stockChoice){
                                     case 1: //Enter New Stock
                                         //Dummy code, to be replaced
+                                        System.out.println("Enter Stock");
                                         Stock newStock = newStock(nextStockID);
                                         stock.add(newStock);
                                         System.out.println("Stock entered");
                                         nextStockID++;
                                         break;
                                     case 2: //View Stock
-                                        //Dummy code, to be replaced
-                                        System.out.println("Stock shown");
+                                        printStock(stock);
                                         break;
                                     case 3: //Dispatch Stock
                                         //Dummy code, to be replaced
+                                        printStock(stock);
+                                        System.out.print("Enter the index number of the stock to be dispatched: ");
+
                                         System.out.println("Stock Dispatched");
                                         break;
                                     case 4: //Shift Stock
@@ -133,6 +136,7 @@ public class main {
                                         else {
                                             System.out.println("There are no sales to edit");
                                         }
+                                        break;
                                     case 5: //Exit
                                         System.out.println("Returning to Main Menu...");
                                         salesDone = true;
@@ -163,6 +167,7 @@ public class main {
     }
 
     //Manage Stock
+    //Enter Stock
     public static Stock newStock(int nextStockID){
         Scanner in = new Scanner(System.in);
         boolean ready = false;
@@ -171,7 +176,6 @@ public class main {
         int supID;
         String loc;
         do{
-            System.out.println("Enter Stock");
             System.out.print("Enter the Item Name: ");
             iName = in.next();
             System.out.print("Enter the Amount: ");
@@ -190,6 +194,21 @@ public class main {
         while (!ready);
         Stock s = new Stock(nextStockID, iName, amount, supID, loc);
         return s;
+    }
+
+    //view all stock
+    public static void printStock(ArrayList<Stock> stock){
+        if (stock.size() > 0) {
+            int i = 0;
+            System.out.println("Index  Stock ID    Item Name                      Amount   Supplier ID    Location");
+            for (Stock s:stock) {
+                System.out.printf("%05d  %09d   %-20.20s   %9d          %09d    %8.8s %n(Y/N)%n", i, s.getStockID(), s.getItemName(), s.getAmount(), s.getSupplierID(), s.getLocation());
+                i++;
+            }
+        }
+        else {
+            System.out.println("This list is empty.");
+        }
     }
 
     //Manage Sales
