@@ -44,6 +44,7 @@ public class main {
                             boolean stockDone = false;
                             do {
                                 System.out.println("View / Manage Stock");
+                                int stockIndex;
                                 System.out.printf("1: Enter New Stock %n2: View Stock %n3: Dispatch Stock %n4: Shift Stock %n5: Exit %n");
                                 int stockChoice = in.nextInt();
                                 switch (stockChoice){
@@ -59,14 +60,18 @@ public class main {
                                         printStock(stock);
                                         break;
                                     case 3: //Dispatch Stock
-                                        //Dummy code, to be replaced
                                         printStock(stock);
-                                        System.out.print("Enter the index number of the stock to be dispatched: ");
-
+                                        stockIndex = chkStockIndex(stock);
+                                        int dipatchAmount = dispatchStock(stock.get(stockIndex));
+                                        stock.get(stockIndex).dispatchStock(dipatchAmount);
                                         System.out.println("Stock Dispatched");
                                         break;
                                     case 4: //Shift Stock
                                         //Dummy code, to be replaced
+                                        printStock(stock);
+                                        stockIndex = chkStockIndex(stock);
+                                        String newLoc = shiftStock();
+                                        stock.get(stockIndex).setLocation(newLoc);
                                         System.out.println("Stock Shifted");
                                         break;
                                     case 5: //Exit
@@ -209,6 +214,63 @@ public class main {
         else {
             System.out.println("This list is empty.");
         }
+    }
+
+    //check Stock index
+    public static int chkStockIndex(ArrayList<Stock> stock){
+        int stockEditChoice;
+        boolean valid = false;
+        Scanner in = new Scanner(System.in);
+        do {
+            System.out.print("Enter the index number of the stock to be modified: ");
+            stockEditChoice = in.nextInt();
+            if (!(stockEditChoice < 0) && !(stockEditChoice > stock.size())){
+                valid = true;
+            }
+            else {
+                System.out.println("Error: Invalid Input, please try again");
+            }
+        }
+        while (!valid);
+        return stockEditChoice;
+    }
+
+    //Dispatch stock
+    public static int dispatchStock(Stock s){
+        Scanner in = new Scanner(System.in);
+        int dispatch;
+        boolean valid = false;
+        do{
+            System.out.print("Enter the number of units to be dispatched: ");
+            dispatch = in.nextInt();
+            if (!(dispatch > s.getAmount())){
+                valid = true;
+            }
+            else {
+                System.out.println("Error: Insufficient Stock, please try again");
+            }
+        }
+        while (!valid);
+        return dispatch;
+    }
+
+    //Shift Stock
+    public static String shiftStock(){
+        Scanner in = new Scanner(System.in);
+        String newLoc;
+        boolean valid = false;
+        do{
+            System.out.print("Enter the new location of the stock: ");
+            newLoc = in.nextLine();
+            System.out.println("Is this the right location?");
+            System.out.println(newLoc + " (Y/N)");
+            String input = in.next();
+            if (input.equalsIgnoreCase("Y")){
+                valid = true;
+            }
+        }
+        while(!valid);
+        return newLoc;
     }
 
     //Manage Sales

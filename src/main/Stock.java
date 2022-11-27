@@ -63,7 +63,9 @@ public class Stock {
     public void setLocation(String newLocation){
         this.location=newLocation;
     }
-
+    public void dispatchStock(int disAmount){
+        amount = amount - disAmount;
+    }
 }
     
 
