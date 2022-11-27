@@ -217,7 +217,7 @@ public class main {
             int i = 0;
             System.out.println("Index  Stock ID    Item Name              Amount      Supplier ID    Location");
             for (Stock s:stock) {
-                System.out.printf("%05d  %09d   %-20.20s   %09d     %09d    %8.8s %n(Y/N)%n", i, s.getStockID(), s.getItemName(), s.getAmount(), s.getSupplierID(), s.getLocation());
+                System.out.printf("%05d  %09d   %-20.20s   %09d     %09d    %8.8s %n", i, s.getStockID(), s.getItemName(), s.getAmount(), s.getSupplierID(), s.getLocation());
                 i++;
             }
         }
