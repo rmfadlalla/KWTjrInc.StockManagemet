@@ -8,6 +8,8 @@ public class main {
         final String PASSWORD = "Swordfish";
         ArrayList<Sale> sales = new ArrayList<>();
         int nextSaleID = 0;
+        ArrayList<Stock> stock = new ArrayList<>();
+        int nextStockID = 0;
         Scanner in = new Scanner(System.in);
         boolean done = false;
         //Login
@@ -42,12 +44,15 @@ public class main {
                             boolean stockDone = false;
                             do {
                                 System.out.println("View / Manage Stock");
-                                System.out.printf("1: Enter Stock %n2: View Stock %n3: Dispatch Stock %n4: Shift Stock %n5: Exit %n");
-                                choice = in.nextInt();
-                                switch (choice){
-                                    case 1: //Enter Stock
+                                System.out.printf("1: Enter New Stock %n2: View Stock %n3: Dispatch Stock %n4: Shift Stock %n5: Exit %n");
+                                int stockChoice = in.nextInt();
+                                switch (stockChoice){
+                                    case 1: //Enter New Stock
                                         //Dummy code, to be replaced
+                                        Stock newStock = newStock(nextStockID);
+                                        stock.add(newStock);
                                         System.out.println("Stock entered");
+                                        nextStockID++;
                                         break;
                                     case 2: //View Stock
                                         //Dummy code, to be replaced
@@ -90,8 +95,8 @@ public class main {
                             do {
                                 System.out.println("View / Manage Sales");
                                 System.out.printf("1: Enter Sales%n2: View Sales%n3: Edit Sales%n4: Delete Sales%n5: Exit%n");
-                                int sChoice = in.nextInt();
-                                switch (sChoice){
+                                int saleChoice = in.nextInt();
+                                switch (saleChoice){
                                     case 1: //Enter Sale
                                         Sale newSale = newSale(nextSaleID);
                                         sales.add(newSale);
@@ -157,7 +162,38 @@ public class main {
 
     }
 
+    //Manage Stock
+    public static Stock newStock(int nextStockID){
+        Scanner in = new Scanner(System.in);
+        boolean ready = false;
+        String iName;
+        int amount;
+        int supID;
+        String loc;
+        do{
+            System.out.println("Enter Stock");
+            System.out.print("Enter the Item Name: ");
+            iName = in.next();
+            System.out.print("Enter the Amount: ");
+            amount = in.nextInt();
+            System.out.print("Enter the ID Number of the Supplier: ");
+            supID = in.nextInt();
+            System.out.print("Enter the Location of the stock: ");
+            loc = in.nextLine();
+            System.out.println("Info entered");
+            System.out.printf("Is this correct?%nItem Name: %s %nAmount:  %9d %nSupplier ID: %09d %nLocation:   %s %n(Y/N)%n", iName,amount,supID,loc);
+            String input = in.next();
+            if (input.equalsIgnoreCase("y")) {
+                ready = true;
+            }
+        }
+        while (!ready);
+        Stock s = new Stock(nextStockID, iName, amount, supID, loc);
+        return s;
+    }
+
     //Manage Sales
+    //get input for a sale
     public static Sale newSale(int nextSaleID){
         Scanner in = new Scanner(System.in);
         boolean ready = false;
@@ -190,6 +226,7 @@ public class main {
         return s;
     }
 
+    //print all sales
     public static void printSales(ArrayList<Sale> sales){
         if (sales.size() > 0) {
             int i = 0;
