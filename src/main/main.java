@@ -60,19 +60,29 @@ public class main {
                                         printStock(stock);
                                         break;
                                     case 3: //Dispatch Stock
-                                        printStock(stock);
-                                        stockIndex = chkStockIndex(stock);
-                                        int dipatchAmount = dispatchStock(stock.get(stockIndex));
-                                        stock.get(stockIndex).dispatchStock(dipatchAmount);
-                                        System.out.println("Stock Dispatched");
+                                        if (stock.size() > 0){
+                                            printStock(stock);
+                                            stockIndex = chkStockIndex(stock);
+                                            int dipatchAmount = dispatchStock(stock.get(stockIndex));
+                                            stock.get(stockIndex).dispatchStock(dipatchAmount);
+                                            System.out.println("Stock Dispatched");
+                                        }
+                                        else {
+                                            System.out.println("There is no stock");
+                                        }
                                         break;
                                     case 4: //Shift Stock
                                         //Dummy code, to be replaced
-                                        printStock(stock);
-                                        stockIndex = chkStockIndex(stock);
-                                        String newLoc = shiftStock();
-                                        stock.get(stockIndex).setLocation(newLoc);
-                                        System.out.println("Stock Shifted");
+                                        if (stock.size() > 0){
+                                            printStock(stock);
+                                            stockIndex = chkStockIndex(stock);
+                                            String newLoc = shiftStock();
+                                            stock.get(stockIndex).setLocation(newLoc);
+                                            System.out.println("Stock Shifted");
+                                        }
+                                        else {
+                                            System.out.println("There is no stock");
+                                        }
                                         break;
                                     case 5: //Exit
                                         System.out.println("Returning to Main Menu...");
