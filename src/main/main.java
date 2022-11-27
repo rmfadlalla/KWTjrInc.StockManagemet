@@ -10,6 +10,9 @@ public class main {
         int nextSaleID = 0;
         ArrayList<Stock> stock = new ArrayList<>();
         int nextStockID = 0;
+        ArrayList<Customer> customers = new ArrayList<>();
+        customers.add(new Customer());
+        int nextCustomerID = 1;
         Scanner in = new Scanner(System.in);
         boolean done = false;
         //Login
@@ -108,6 +111,7 @@ public class main {
                             }
                             while (!suppliersDone);
                             break;
+
                         case 4: //Manage Sales
                             boolean salesDone = false;
                             do {
@@ -163,12 +167,40 @@ public class main {
                             }
                             while (!salesDone);
                             break;
+
                         case 5: //Manage Customers
                             boolean customersDone = false;
                             do {
+                                int customerChoice;
                                 System.out.println("View / Manage Customers");
+                                System.out.printf("1: Add Customers%n2: View Customers%n3: Edit Customers%n4: Delete Customers%n5: Exit%n");
+                                customerChoice = in.nextInt();
+                                switch (customerChoice){
+                                    case 1: //Add Customer
+                                        Customer newCustomer = newCustomer(nextCustomerID);
+                                        customers.add(newCustomer);
+                                        System.out.println("Customer Added!");
+                                        nextCustomerID++;
+                                        break;
+                                    case 2: //View Customers
+                                        //Dummy Code, change later
+                                        break;
+                                    case 3: //Edit Customers
+                                        //Dummy Code, change later
+                                        break;
+                                    case 4: //Delete Customers
+                                        //Dummy Code, change later
+                                        break;
+                                    case 5: //Exit
+                                        System.out.println("Returning to Main Menu...");
+                                        customersDone = true;
+                                        break;
+                                    default:
+                                        System.out.println("Error: Invalid option, please try again");
+                                }
                             }
                             while (!customersDone);
+                            break;
                         case 6: //Quit
                             done = true;
                             break;
@@ -217,7 +249,7 @@ public class main {
             int i = 0;
             System.out.println("Index  Stock ID    Item Name              Amount      Supplier ID    Location");
             for (Stock s:stock) {
-                System.out.printf("%05d  %09d   %-20.20s   %09d     %09d    %8.8s %n", i, s.getStockID(), s.getItemName(), s.getAmount(), s.getSupplierID(), s.getLocation());
+                System.out.printf("%05d  %09d   %-20.20s   %9d     %09d    %8.8s %n", i, s.getStockID(), s.getItemName(), s.getAmount(), s.getSupplierID(), s.getLocation());
                 i++;
             }
         }
@@ -335,4 +367,52 @@ public class main {
 
 
     //Manage Customers
+    //New Customer
+    public static Customer newCustomer(int nextCustomerID) {
+        Scanner in = new Scanner(System.in);
+        boolean ready = false;
+        String n;
+        String addr;
+        String phoneNo;
+        String email;
+        do{
+            System.out.print("Enter the customer's Name: ");
+            n = in.nextLine();
+            System.out.print("Enter the customer's address: ");
+            addr = in.nextLine();
+            System.out.print("Enter the customer's Phone Number: ");
+            phoneNo = in.next();
+            System.out.print("Enter the customer's E-Mail Address: ");
+            email = in.nextLine();
+            System.out.println("Info Entered");
+            System.out.printf("Is this correct?%nName: %s%nAddress: %s%nPhone Number: %s%nEmail Address: %s%n (Y/N)%n",n,addr,phoneNo,email);
+            String input = in.next();
+            if (input.equalsIgnoreCase("Y")){
+                ready = true;
+            }
+        }
+        while (!ready);
+        Customer c = new Customer(nextCustomerID,n,addr,phoneNo,email);
+        return c;
+    }
+
+    public static void printCustomers(ArrayList<Customer> customers){
+        if (customers.size() > 0) {
+            int i = 0;
+            System.out.println("Index  Customer ID    Name                           Address                                  Phone Number   E-Mail");
+            for (Customer s:customers) {
+                System.out.printf("%5d      %07d    %-30s %-40s %-10s   %-40s%n",i,s.getCustomerID(),s.getName(),s.getAddress(),s.getPhoneNo(),s.getEmail());
+                i++;
+            }
+        }
+        else {
+            System.out.println("This list is empty.");
+        }
+    }
+
+    //view all customers
+
+    //edit customers
+
+    //delete customer
 }

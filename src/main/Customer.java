@@ -15,10 +15,10 @@ public class Customer {
 
  public Customer() {
   customerID = 0;
-  name = "he";
-  address = "2222 Martin Street";
-  phoneNo = "555-555-5555";
-  email = "heshe@tutamail.com";
+  name = "N/A";
+  address = "";
+  phoneNo = "";
+  email = "";
  }
  public Customer(int customerID, String name, String address, String phoneNo, String email) {
   this.customerID = customerID;
