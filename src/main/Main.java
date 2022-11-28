@@ -98,6 +98,7 @@ public class Main {
                             }
                             while (!stockDone);
                             break;
+
                         case 2: //Manage Purchases
                             boolean purchasesDone = false;
                             do {
@@ -128,6 +129,7 @@ public class Main {
                             }
                             while (!purchasesDone);
                             break;
+
                         case 3: //Manage Suppliers
                             boolean suppliersDone = false;
                             do {
