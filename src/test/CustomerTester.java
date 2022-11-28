@@ -24,6 +24,8 @@ public class CustomerTester {
         ArrayList<Customer> customers = new ArrayList<>();
         customers.add(nadine);
 
+        System.out.println(customers.get(0).getCustomerID());
+
         if (customers.size() > 0) {
             int i = 0;
             System.out.println("Index  Customer ID    Name                           Address                                  Phone Number   E-Mail");

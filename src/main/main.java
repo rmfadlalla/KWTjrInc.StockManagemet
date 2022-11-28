@@ -2,7 +2,7 @@ package src.main;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class main {
+public class Main {
     public static void main(String[] args) {
         final String USERNAME = "Admin";
         final String PASSWORD = "Swordfish";
@@ -52,7 +52,6 @@ public class main {
                                 int stockChoice = in.nextInt();
                                 switch (stockChoice){
                                     case 1: //Enter New Stock
-                                        //Dummy code, to be replaced
                                         System.out.println("Enter Stock");
                                         Stock newStock = newStock(nextStockID);
                                         stock.add(newStock);
@@ -60,14 +59,16 @@ public class main {
                                         nextStockID++;
                                         break;
                                     case 2: //View Stock
+                                        System.out.println("View Stock");
                                         printStock(stock);
                                         break;
                                     case 3: //Dispatch Stock
+                                        System.out.println("Dispatch Stock");
                                         if (stock.size() > 0){
                                             printStock(stock);
                                             stockIndex = chkStockIndex(stock);
-                                            int dipatchAmount = dispatchStock(stock.get(stockIndex));
-                                            stock.get(stockIndex).dispatchStock(dipatchAmount);
+                                            int dispatchAmount = dispatchStock(stock.get(stockIndex));
+                                            stock.get(stockIndex).dispatchStock(dispatchAmount);
                                             System.out.println("Stock Dispatched");
                                         }
                                         else {
@@ -75,7 +76,7 @@ public class main {
                                         }
                                         break;
                                     case 4: //Shift Stock
-                                        //Dummy code, to be replaced
+                                        System.out.println("Shift Stock");
                                         if (stock.size() > 0){
                                             printStock(stock);
                                             stockIndex = chkStockIndex(stock);
@@ -115,11 +116,13 @@ public class main {
                         case 4: //Manage Sales
                             boolean salesDone = false;
                             do {
+                                int saleIndex;
                                 System.out.println("View / Manage Sales");
                                 System.out.printf("1: Enter Sales%n2: View Sales%n3: Edit Sales%n4: Delete Sales%n5: Exit%n");
                                 int saleChoice = in.nextInt();
                                 switch (saleChoice){
                                     case 1: //Enter Sale
+                                        System.out.println("Add Sale");
                                         Sale newSale = newSale(nextSaleID);
                                         sales.add(newSale);
                                         System.out.println("Sale added!");
@@ -130,15 +133,13 @@ public class main {
                                         printSales(sales);
                                         break;
                                     case 3: //Edit Sale
+                                        System.out.println("Edit Sale");
                                         if (sales.size() > 0) {
-                                            //code here
-                                            int e;
                                             Sale s;
                                             printSales(sales);
-                                            System.out.print("Input the index of the sale you want to edit: ");
-                                            e = in.nextInt();
-                                            s = newSale(nextSaleID);
-                                            sales.set(e, s);
+                                            saleIndex = chkSalesIndex(sales);
+                                            s = newSale(sales.get(saleIndex).getSaleID());
+                                            sales.set(saleIndex, s);
                                         }
                                         else {
                                             System.out.println("There are no sales to edit");
@@ -146,11 +147,9 @@ public class main {
                                         break;
                                     case 4: //Delete Sale
                                         if (sales.size() > 0) {
-                                            int r;
-                                            printSales(sales);
-                                            System.out.print("Input the index of the sale you want to delete: ");
-                                            r = in.nextInt();
-                                            sales.remove(r);
+                                            System.out.println("Delete Sale");
+                                            saleIndex = chkSalesIndex(sales);
+                                            sales.remove(saleIndex);
                                         }
                                         else {
                                             System.out.println("There are no sales to edit");
@@ -172,24 +171,43 @@ public class main {
                             boolean customersDone = false;
                             do {
                                 int customerChoice;
+                                int customerIndex;
                                 System.out.println("View / Manage Customers");
                                 System.out.printf("1: Add Customers%n2: View Customers%n3: Edit Customers%n4: Delete Customers%n5: Exit%n");
                                 customerChoice = in.nextInt();
                                 switch (customerChoice){
                                     case 1: //Add Customer
+                                        System.out.println("Add Customer");
                                         Customer newCustomer = newCustomer(nextCustomerID);
                                         customers.add(newCustomer);
                                         System.out.println("Customer Added!");
                                         nextCustomerID++;
                                         break;
                                     case 2: //View Customers
-                                        //Dummy Code, change later
+                                        System.out.println("View Customers");
+                                        printCustomers(customers);
                                         break;
                                     case 3: //Edit Customers
                                         //Dummy Code, change later
+                                        System.out.println("Edit Customers");
+                                        if (customers.size()>0){
+                                            printCustomers(customers);
+                                            customerIndex = chkCustomerIndex(customers);
+                                            Customer c = newCustomer(customers.get(customerIndex).getCustomerID());
+                                        }
+                                        else {
+                                            System.out.println("There are no customers");
+                                        }
                                         break;
                                     case 4: //Delete Customers
-                                        //Dummy Code, change later
+                                        System.out.println("Delete Customers");
+                                        if (customers.size()>0){
+                                            printCustomers(customers);
+                                            customerIndex = chkCustomerIndex(customers);
+                                        }
+                                        else {
+                                            System.out.println("There are no customers");
+                                        }
                                         break;
                                     case 5: //Exit
                                         System.out.println("Returning to Main Menu...");
@@ -210,7 +228,6 @@ public class main {
                 while (!done);
             }
         }
-
     }
 
     //Manage Stock
@@ -266,7 +283,7 @@ public class main {
         do {
             System.out.print("Enter the index number of the stock to be modified: ");
             stockEditChoice = in.nextInt();
-            if (!(stockEditChoice < 0) && !(stockEditChoice > stock.size())){
+            if (!(stockEditChoice < 0) && (stockEditChoice < stock.size())){
                 valid = true;
             }
             else {
@@ -339,7 +356,7 @@ public class main {
             System.out.print("Enter the date of the sale (MM.DD.YYYY): ");
             day = in.next();
             System.out.println("Info entered");
-            System.out.printf("Is this correct?%nCustomer ID:     %07d %nItem ID:       %09d %nQuantity:      %9d %nSale total: $      %5.2f %nDate:         %s %n(Y/N)%n", cID,iID,quant,price,day);
+            System.out.printf("Is this correct?%nCustomer ID:     %07d %nItem ID:       %09d %nQuantity:      %9d %nSale total: $%11.2f %nDate:         %s %n(Y/N)%n", cID,iID,quant,price,day);
             String input = in.next();
             if (input.equalsIgnoreCase("y")){
                 ready = true;
@@ -354,15 +371,34 @@ public class main {
     public static void printSales(ArrayList<Sale> sales){
         if (sales.size() > 0) {
             int i = 0;
-            System.out.println("Index  Sale ID    Customer ID    Item ID    Quantity   Sale Amount    Date");
+            System.out.println("Index  Sale ID      Customer ID    Item ID    Quantity   Sale Amount    Date");
             for (Sale s:sales) {
-                System.out.printf("%5d  %07d    %09d      %09d %9d         %.2f     %s %n",i,s.getSaleID(),s.getCustomerID(),s.getItemID(),s.getQuantity(),s.getSaleAmount(),s.getDate());
+                System.out.printf("%05d  %09d    %09d      %09d %9d         %.2f    %s %n",i,s.getSaleID(),s.getCustomerID(),s.getItemID(),s.getQuantity(),s.getSaleAmount(),s.getDate());
                 i++;
             }
         }
         else {
             System.out.println("This list is empty.");
         }
+    }
+
+    //check sales index
+    public static int chkSalesIndex(ArrayList<Sale> sales){
+        int salesEditChoice;
+        boolean valid = false;
+        Scanner in = new Scanner(System.in);
+        do {
+            System.out.print("Enter the index number of the sale to be modified: ");
+            salesEditChoice = in.nextInt();
+            if (!(salesEditChoice < 0) && (salesEditChoice < sales.size())){
+                valid = true;
+            }
+            else {
+                System.out.println("Error: Invalid Input, please try again");
+            }
+        }
+        while (!valid);
+        return salesEditChoice;
     }
 
 
@@ -396,6 +432,7 @@ public class main {
         return c;
     }
 
+    //list all customers
     public static void printCustomers(ArrayList<Customer> customers){
         if (customers.size() > 0) {
             int i = 0;
@@ -411,6 +448,29 @@ public class main {
     }
 
     //view all customers
+
+    //check index of customer
+    public static int chkCustomerIndex(ArrayList<Customer> customers){
+        int customerEditChoice;
+        boolean valid = false;
+        Scanner in = new Scanner(System.in);
+        do {
+            System.out.print("Enter the index number of the Customer to be modified: ");
+            customerEditChoice = in.nextInt();
+            if (customerEditChoice == 0){
+                System.out.println("This is the default customer. It cannot be modified.");
+            }
+            else if (!(customerEditChoice < 0) && (customerEditChoice < customers.size())){
+                valid = true;
+            }
+            else {
+                System.out.println("Error: Invalid Input, please try again");
+            }
+        }
+        while (!valid);
+        return customerEditChoice;
+    }
+
 
     //edit customers
 
