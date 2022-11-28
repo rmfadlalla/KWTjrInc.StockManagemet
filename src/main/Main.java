@@ -139,14 +139,17 @@ public class Main {
                                         System.out.println("Add Supplier");
                                         break;
                                     case 2: //View Suppliers
+                                        System.out.println("View Suppliers");
                                         break;
                                     case 3: //Edit Supplier
+                                        System.out.println("Edit Supplier");
                                         break;
                                     case 4: //Delete Supplier
+                                        System.out.println("Delete Supplier");
                                         break;
                                     case 5:
                                         System.out.println("Returning to Main Menu...");
-                                        purchasesDone = true;
+                                        suppliersDone = true;
                                         break;
                                     default:
                                         System.out.println("Error: Invalid option, please try again");
