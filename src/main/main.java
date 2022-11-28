@@ -554,9 +554,9 @@ public class Main {
     public static void printCustomers(ArrayList<Customer> customers){
         if (customers.size() > 0) {
             int i = 0;
-            System.out.println("Index  Customer ID    Name                           Address                                  Phone Number   E-Mail");
+            System.out.println("Index  Customer ID    Name                           Address                                                 Phone Number   E-Mail");
             for (Customer s:customers) {
-                System.out.printf("%5d      %07d    %-30s %-40s %-10s   %-40s%n",i,s.getCustomerID(),s.getName(),s.getAddress(),s.getPhoneNo(),s.getEmail());
+                System.out.printf("%5d      %07d    %-30s %-55s %-10s   %-40s%n",i,s.getCustomerID(),s.getName(),s.getAddress(),s.getPhoneNo(),s.getEmail());
                 i++;
             }
         }
