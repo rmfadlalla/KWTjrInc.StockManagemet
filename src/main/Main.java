@@ -132,7 +132,7 @@ public class Main {
                             boolean suppliersDone = false;
                             do {
                                 System.out.println("View / Manage Suppliers");
-                                System.out.printf("1: Enter Purchases%n2: View Purchases%n3: Edit Purchases%n4: Delete Purchases%n5: Exit%n");
+                                System.out.printf("1: Enter Suppliers%n2: View Suppliers%n3: Edit Suppliers%n4: Delete Suppliers%n5: Exit%n");
                                 int suppliersChoice = in.nextInt();
                                 switch (suppliersChoice){
                                     case 1: //Add Supplier
