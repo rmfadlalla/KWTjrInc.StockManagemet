@@ -103,16 +103,20 @@ public class Main {
                             do {
                                 System.out.println("View / Manage Purchases");
                                 System.out.printf("1: Enter Purchases%n2: View Purchases%n3: Edit Purchases%n4: Delete Purchases%n5: Exit%n");
-                                int salesChoice = in.nextInt();
-                                switch (salesChoice){
+                                int purchacesChoice = in.nextInt();
+                                switch (purchacesChoice){
                                     case 1: //Add Purchase
                                         System.out.println("Add Purchase");
+                                        break;
                                     case 2: //View Purchases
                                         System.out.println("View Purchases");
+                                        break;
                                     case 3: //Edit Purchase
                                         System.out.println("Edit Purchase");
+                                        break;
                                     case 4: //Delete Purchase
                                         System.out.println("Delete Purchase");
+                                        break;
                                     case 5: //Exit
                                         System.out.println("Returning to Main Menu...");
                                         purchasesDone = true;
@@ -133,10 +137,13 @@ public class Main {
                                 switch (suppliersChoice){
                                     case 1: //Add Supplier
                                         System.out.println("Add Supplier");
+                                        break;
                                     case 2: //View Suppliers
-
+                                        break;
                                     case 3: //Edit Supplier
+                                        break;
                                     case 4: //Delete Supplier
+                                        break;
                                     case 5:
                                         System.out.println("Returning to Main Menu...");
                                         purchasesDone = true;
