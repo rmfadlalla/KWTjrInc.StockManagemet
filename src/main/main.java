@@ -102,6 +102,7 @@ public class Main {
                             boolean purchasesDone = false;
                             do {
                                 System.out.println("View / Manage Purchases");
+
                             }
                             while (!purchasesDone);
                             break;
@@ -140,6 +141,7 @@ public class Main {
                                             saleIndex = chkSalesIndex(sales);
                                             s = newSale(sales.get(saleIndex).getSaleID());
                                             sales.set(saleIndex, s);
+                                            System.out.println("Entry Edited");
                                         }
                                         else {
                                             System.out.println("There are no sales to edit");
@@ -188,12 +190,13 @@ public class Main {
                                         printCustomers(customers);
                                         break;
                                     case 3: //Edit Customers
-                                        //Dummy Code, change later
                                         System.out.println("Edit Customers");
                                         if (customers.size()>0){
                                             printCustomers(customers);
                                             customerIndex = chkCustomerIndex(customers);
                                             Customer c = newCustomer(customers.get(customerIndex).getCustomerID());
+                                            customers.set(customerIndex, c);
+                                            System.out.println("Entry Edited");
                                         }
                                         else {
                                             System.out.println("There are no customers");
@@ -204,6 +207,7 @@ public class Main {
                                         if (customers.size()>0){
                                             printCustomers(customers);
                                             customerIndex = chkCustomerIndex(customers);
+                                            customers.remove(customerIndex);
                                         }
                                         else {
                                             System.out.println("There are no customers");
@@ -280,17 +284,30 @@ public class Main {
         int stockEditChoice;
         boolean valid = false;
         Scanner in = new Scanner(System.in);
+        boolean confirm = false;
+        String check;
         do {
-            System.out.print("Enter the index number of the stock to be modified: ");
-            stockEditChoice = in.nextInt();
-            if (!(stockEditChoice < 0) && (stockEditChoice < stock.size())){
-                valid = true;
+            do {
+                System.out.print("Enter the index number of the stock to be modified: ");
+                stockEditChoice = in.nextInt();
+                if (!(stockEditChoice < 0) && (stockEditChoice < stock.size())){
+                    valid = true;
+                }
+                else {
+                    System.out.println("Error: Invalid Input, please try again");
+                }
             }
-            else {
-                System.out.println("Error: Invalid Input, please try again");
+            while (!valid);
+            System.out.println("Is this the correct entry?");
+            System.out.println("Index  Stock ID    Item Name              Amount      Supplier ID    Location");
+            System.out.printf("%05d  %09d   %-20.20s   %9d     %09d    %8.8s %n", stockEditChoice, stock.get(stockEditChoice).getStockID(), stock.get(stockEditChoice).getItemName(), stock.get(stockEditChoice).getAmount(), stock.get(stockEditChoice).getSupplierID(), stock.get(stockEditChoice).getLocation());
+            System.out.println("(Y/N)");
+            check = in.next();
+            if (check.equalsIgnoreCase("Y")){
+                confirm = true;
             }
         }
-        while (!valid);
+        while (!confirm);
         return stockEditChoice;
     }
 
@@ -387,10 +404,66 @@ public class Main {
         int salesEditChoice;
         boolean valid = false;
         Scanner in = new Scanner(System.in);
+        boolean confirm = false;
+        String check;
         do {
-            System.out.print("Enter the index number of the sale to be modified: ");
-            salesEditChoice = in.nextInt();
-            if (!(salesEditChoice < 0) && (salesEditChoice < sales.size())){
+            do {
+                System.out.print("Enter the index number of the sale to be modified: ");
+                salesEditChoice = in.nextInt();
+                if (!(salesEditChoice < 0) && (salesEditChoice < sales.size())){
+                    valid = true;
+                }
+                else {
+                    System.out.println("Error: Invalid Input, please try again");
+                }
+            }
+            while (!valid);
+            System.out.println("Is this the correct entry?");
+            System.out.println("Index  Sale ID      Customer ID    Item ID    Quantity   Sale Amount    Date");
+            System.out.printf("%05d  %09d    %09d      %09d %9d         %.2f    %s %n",salesEditChoice,sales.get(salesEditChoice).getSaleID(),sales.get(salesEditChoice).getCustomerID(),sales.get(salesEditChoice).getItemID(),sales.get(salesEditChoice).getQuantity(),sales.get(salesEditChoice).getSaleAmount(),sales.get(salesEditChoice).getDate());
+            System.out.println("(Y/N)");
+            check = in.next();
+            if (check.equalsIgnoreCase("Y")){
+                confirm = true;
+            }
+        }
+        while (!confirm);
+        return salesEditChoice;
+    }
+
+    /*
+    //Purchases
+    //New Purchase
+    public static Purchase newPurchase(int nextPurchaseID){
+        Scanner in = new Scanner(System.in);
+        boolean ready = false;
+    }//incomplete
+
+    //List All Purchases
+    public static void printPurchases(ArrayList<Purchase> purchases){
+
+        if (purchases.size() > 0) {
+            int i = 0;
+            System.out.println();
+            for (Purchase s:purchases) {
+                System.out.printf();
+                i++;
+            }
+        }
+        else {
+            System.out.println("This list is empty.");
+        }
+    }//incomplete
+
+    //Check Purchase Index
+    public static int chkPurchaseIndex(ArrayList<Purchase> purchases) {
+        int editChoice;
+        boolean valid = false;
+        Scanner in = new Scanner(System.in);
+        do {
+            System.out.print("Enter the index number of the Purchase to be modified: ");
+            purchaseEditChoice = in.nextInt();
+            if (!(editChoice < 0) && (editChoice < purchases.size())){
                 valid = true;
             }
             else {
@@ -398,8 +471,53 @@ public class Main {
             }
         }
         while (!valid);
-        return salesEditChoice;
+        return editChoice;
     }
+
+
+    //Suppliers
+    //New Supplier
+
+    public static Supplier newSupplier(int nextSupplierID){
+        Scanner in = new Scanner(System.in);
+        boolean ready = false;
+    }//incomplete
+
+    //List All Suppliers
+    public static void printSuppliers(ArrayList<Supplier> suppliers){
+        if (suppliers.size() > 0) {
+            int i = 0;
+            System.out.println("Index  Customer ID    Name                           Address                                  Phone Number   E-Mail");
+            for (Supplier s:suppliers) {
+                System.out.printf("",i,);
+                i++;
+            }
+        }
+        else {
+            System.out.println("This list is empty.");
+        }
+    }//incomplete
+
+    //Check Supplier Index
+    public static int chkSupplierIndex(ArrayList<Supplier> suppliers){
+        int editChoice;
+        boolean valid = false;
+        Scanner in = new Scanner(System.in);
+        do {
+            System.out.print("Enter the index number of the Supplier to be modified: ");
+            editChoice = in.nextInt();
+            if (!(editChoice < 0) && (editChoice < suppliers.size())){
+                valid = true;
+            }
+            else {
+                System.out.println("Error: Invalid Input, please try again");
+            }
+        }
+        while (!valid);
+        return editChoice;
+    }
+
+     */
 
 
     //Manage Customers
@@ -447,32 +565,38 @@ public class Main {
         }
     }
 
-    //view all customers
-
     //check index of customer
     public static int chkCustomerIndex(ArrayList<Customer> customers){
         int customerEditChoice;
         boolean valid = false;
         Scanner in = new Scanner(System.in);
+        boolean confirm = false;
+        String check;
         do {
-            System.out.print("Enter the index number of the Customer to be modified: ");
-            customerEditChoice = in.nextInt();
-            if (customerEditChoice == 0){
-                System.out.println("This is the default customer. It cannot be modified.");
+            do {
+                System.out.print("Enter the index number of the Customer to be modified: ");
+                customerEditChoice = in.nextInt();
+                if (customerEditChoice == 0){
+                    System.out.println("This is the default customer. It cannot be modified.");
+                }
+                else if (!(customerEditChoice < 0) && (customerEditChoice < customers.size())){
+                    valid = true;
+                }
+                else {
+                    System.out.println("Error: Invalid Input, please try again");
+                }
             }
-            else if (!(customerEditChoice < 0) && (customerEditChoice < customers.size())){
-                valid = true;
-            }
-            else {
-                System.out.println("Error: Invalid Input, please try again");
+            while (!valid);
+            System.out.println("Is this the correct entry?");
+            System.out.println("Index  Customer ID    Name                           Address                                  Phone Number   E-Mail");
+            System.out.printf("%5d      %07d    %-30s %-40s %-10s   %-40s%n", customerEditChoice,customers.get(customerEditChoice).getCustomerID(),customers.get(customerEditChoice).getName(),customers.get(customerEditChoice).getAddress(),customers.get(customerEditChoice).getPhoneNo(),customers.get(customerEditChoice).getEmail());
+            System.out.println("(Y/N)");
+            check = in.next();
+            if (check.equalsIgnoreCase("Y")){
+                confirm = true;
             }
         }
-        while (!valid);
+        while (!confirm);
         return customerEditChoice;
     }
-
-
-    //edit customers
-
-    //delete customer
 }
