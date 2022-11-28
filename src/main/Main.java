@@ -102,7 +102,25 @@ public class Main {
                             boolean purchasesDone = false;
                             do {
                                 System.out.println("View / Manage Purchases");
-
+                                System.out.printf("1: Enter Purchases%n2: View Purchases%n3: Edit Purchases%n4: Delete Purchases%n5: Exit%n");
+                                int salesChoice = in.nextInt();
+                                switch (salesChoice){
+                                    case 1: //Add Purchase
+                                        System.out.println("Add Purchase");
+                                    case 2: //View Purchases
+                                        System.out.println("View Purchases");
+                                    case 3: //Edit Purchase
+                                        System.out.println("Edit Purchase");
+                                    case 4: //Delete Purchase
+                                        System.out.println("Delete Purchase");
+                                    case 5: //Exit
+                                        System.out.println("Returning to Main Menu...");
+                                        purchasesDone = true;
+                                        break;
+                                    default:
+                                        System.out.println("Error: Invalid option, please try again");
+                                        break;
+                                }
                             }
                             while (!purchasesDone);
                             break;
@@ -110,6 +128,23 @@ public class Main {
                             boolean suppliersDone = false;
                             do {
                                 System.out.println("View / Manage Suppliers");
+                                System.out.printf("1: Enter Purchases%n2: View Purchases%n3: Edit Purchases%n4: Delete Purchases%n5: Exit%n");
+                                int suppliersChoice = in.nextInt();
+                                switch (suppliersChoice){
+                                    case 1: //Add Supplier
+                                        System.out.println("Add Supplier");
+                                    case 2: //View Suppliers
+
+                                    case 3: //Edit Supplier
+                                    case 4: //Delete Supplier
+                                    case 5:
+                                        System.out.println("Returning to Main Menu...");
+                                        purchasesDone = true;
+                                        break;
+                                    default:
+                                        System.out.println("Error: Invalid option, please try again");
+                                        break;
+                                }
                             }
                             while (!suppliersDone);
                             break;
@@ -431,6 +466,7 @@ public class Main {
         return salesEditChoice;
     }
 
+
     /*
     //Purchases
     //New Purchase
@@ -460,17 +496,29 @@ public class Main {
         int editChoice;
         boolean valid = false;
         Scanner in = new Scanner(System.in);
+        boolean confirm = false;
+        String check;
         do {
-            System.out.print("Enter the index number of the Purchase to be modified: ");
-            purchaseEditChoice = in.nextInt();
-            if (!(editChoice < 0) && (editChoice < purchases.size())){
-                valid = true;
+            do {
+                System.out.print("Enter the index number of the Purchase to be modified: ");
+                purchaseEditChoice = in.nextInt();
+                if (!(editChoice < 0) && (editChoice < purchases.size())){
+                    valid = true;
+                }
+                else {
+                    System.out.println("Error: Invalid Input, please try again");
+                }
             }
-            else {
-                System.out.println("Error: Invalid Input, please try again");
+            while (!valid);
+            System.out.println("Is this the correct entry?");
+            //print info here
+            System.out.println("(Y/N)");
+            check = in.next();
+            if (check.equalsIgnoreCase("Y")){
+                confirm = true;
             }
         }
-        while (!valid);
+        while (!confirm);
         return editChoice;
     }
 
@@ -503,17 +551,29 @@ public class Main {
         int editChoice;
         boolean valid = false;
         Scanner in = new Scanner(System.in);
+        boolean confirm = false;
+        String check;
         do {
-            System.out.print("Enter the index number of the Supplier to be modified: ");
-            editChoice = in.nextInt();
-            if (!(editChoice < 0) && (editChoice < suppliers.size())){
-                valid = true;
+            do {
+                System.out.print("Enter the index number of the Supplier to be modified: ");
+                editChoice = in.nextInt();
+                if (!(editChoice < 0) && (editChoice < suppliers.size())){
+                    valid = true;
+                }
+                else {
+                    System.out.println("Error: Invalid Input, please try again");
+                }
             }
-            else {
-                System.out.println("Error: Invalid Input, please try again");
+            while (!valid);
+            System.out.println("Is this the correct entry?");
+            //Print info here
+            System.out.println("(Y/N)");
+            check = in.next();
+            if (check.equalsIgnoreCase("Y")){
+                confirm = true;
             }
         }
-        while (!valid);
+        while (!confirm);
         return editChoice;
     }
 
@@ -537,7 +597,7 @@ public class Main {
             System.out.print("Enter the customer's Phone Number: ");
             phoneNo = in.next();
             System.out.print("Enter the customer's E-Mail Address: ");
-            email = in.nextLine();
+            email = in.next();
             System.out.println("Info Entered");
             System.out.printf("Is this correct?%nName: %s%nAddress: %s%nPhone Number: %s%nEmail Address: %s%n (Y/N)%n",n,addr,phoneNo,email);
             String input = in.next();
