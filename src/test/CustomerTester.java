@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class CustomerTester {
     public static void main(String[] args) {
-      //  int id;
+        //int id;
         Customer nadine = new Customer();
         nadine.setCustomerID(1);
         System.out.println(nadine.getCustomerID());
