@@ -558,7 +558,7 @@ public class Main {
             while (!valid);
             System.out.println("Is this the correct entry?");
             //print info here
-            System.out.printf("Purchase ID: %09d %nSupplier ID: %09d %nItem ID: %09d %n Total Price: %6.2f %nPurchase Date: %s %nPayment Date: %s",purchases.get(editChoice).getPurchaseID() , purchases.get(editChoice).getSupplierID(), purchases.get(editChoice).getItemID(), purchases.get(editChoice).getTotalPrice(), purchases.get(editChoice).getPurchaseDate(), purchases.get(editChoice).getPaymentDate());
+            System.out.printf("Purchase ID:    %09d %nSupplier ID:    %09d %nItem ID:        %09d %nTotal Price:       %6.2f %nPurchase Date: %s %nPayment Date:  %s %n",purchases.get(editChoice).getPurchaseID() , purchases.get(editChoice).getSupplierID(), purchases.get(editChoice).getItemID(), purchases.get(editChoice).getTotalPrice(), purchases.get(editChoice).getPurchaseDate(), purchases.get(editChoice).getPaymentDate());
             System.out.println("(Y/N)");
             check = in.next();
             if (check.equalsIgnoreCase("Y")){

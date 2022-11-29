@@ -24,6 +24,7 @@ public class SupplierTester2 {
         System.out.println("phoneNumber: "+ Supplier1.getPhoneNumber());
 
         ArrayList<Supplier> suppliers = new ArrayList<>();
-        suppliers.add()
+        suppliers.add(Supplier1);
+
     }
 }
