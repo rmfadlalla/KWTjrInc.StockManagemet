@@ -27,14 +27,19 @@ public class SupplierTester2 {
         suppliers.add(Supplier1);
         if (suppliers.size() > 0) {
             int i = 0;
-            System.out.println("Index  Supplier ID    Supplier Name                   Address                                         E-Mail                 Phone Number");
+            System.out.println("Index  Supplier ID    Supplier Name                   Address                                                  E-Mail                          Phone Number");
             for (Supplier s:suppliers) {
-                System.out.printf("%05d  %09d    %20s    %55s  %30  %12s",i, s.getSupplierID(),s.getSupplierName(), s.getAddress(), s.getEmail(), s.getPhoneNumber());
+                System.out.printf("%05d  %09d      %-30s  %-55s  %-30s  %-12s",i, s.getSupplierID(),s.getSupplierName(), s.getAddress(), s.getEmail(), s.getPhoneNumber());
                 i++;
             }
         }
         else {
             System.out.println("This list is empty.");
         }
+        int editChoice = 0;
+        System.out.printf("Is this correct? %nName:       %-30s %nAddress:    %-55s %nE-mail:     %-30s %nPhone No.:  %-12s %n(Y/N) %n", suppliers.get(editChoice).getSupplierName(),suppliers.get(editChoice).getAddress(),suppliers.get(editChoice).getEmail(),suppliers.get(editChoice).getPhoneNumber());
+        System.out.printf("Index:      %09d %nName:       %-30s %nAddress:    %-55s %nE-mail:     %-30s %nPhone No.:  %-12s %n(Y/N) %n", suppliers.get(editChoice).getSupplierID(), suppliers.get(editChoice).getSupplierName(),suppliers.get(editChoice).getAddress(),suppliers.get(editChoice).getEmail(),suppliers.get(editChoice).getPhoneNumber());
+
+
     }
 }

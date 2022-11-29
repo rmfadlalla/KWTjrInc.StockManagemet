@@ -570,28 +570,46 @@ public class Main {
     }
 
 
-/*
+
     //Suppliers
     //New Supplier
     public static Supplier newSupplier(int nextSupplierID){
         Scanner in = new Scanner(System.in);
         boolean ready = false;
+        String sName, addr, email, phoneNo;
+        do {
+            System.out.print("Enter the Name of the Supplier: ");
+            sName = in.next();
+            System.out.print("Enter the Address of the Supplier: ");
+            addr = in.nextLine();
+            System.out.print("Enter the E-mail of the Supplier: ");
+            email = in.next();
+            System.out.print("Enter the Phone Number of the Supplier: ");
+            phoneNo = in.next();
+            System.out.printf("Is this correct? %nName:       %-30s %nAddress:    %-55s %nE-mail:     %-30s %nPhone No.:  %-12s %n(Y/N) %n", sName,addr,email,phoneNo);
+            String input = in.next();
+            if (input.equalsIgnoreCase("y")){
+                ready = true;
+            }
+        }
+        while (!ready);
+        return new Supplier(nextSupplierID, sName, addr, email, phoneNo);
     }//incomplete
 
     //List All Suppliers
     public static void printSuppliers(ArrayList<Supplier> suppliers){
         if (suppliers.size() > 0) {
             int i = 0;
-            System.out.println("Index  Customer ID    Name                           Address                                  Phone Number   E-Mail");
+            System.out.println("Index  Supplier ID    Supplier Name                   Address                                                  E-Mail                          Phone Number");
             for (Supplier s:suppliers) {
-                System.out.printf("%05d  %09d        %-20s  %-55s  %-30  %-12s",i, s.getSupplierID(),s.getSupplierName(), s.getAddress(), s.getEmail(), s.getPhoneNumber());
+                System.out.printf("%05d  %09d      %-30s  %-55s  %-30s  %-12s",i, s.getSupplierID(),s.getSupplierName(), s.getAddress(), s.getEmail(), s.getPhoneNumber());
                 i++;
             }
         }
         else {
             System.out.println("This list is empty.");
         }
-    }//incomplete
+    }
 
     //Check Supplier Index
     public static int chkSupplierIndex(ArrayList<Supplier> suppliers){
@@ -614,7 +632,7 @@ public class Main {
             while (!valid);
             System.out.println("Is this the correct entry?");
             //Print info here
-            System.out.println("(Y/N)");
+            System.out.printf("Index:      %09d %nName:       %-30s %nAddress:    %-55s %nE-mail:     %-30s %nPhone No.:  %-12s %n(Y/N) %n", suppliers.get(editChoice).getSupplierID(), suppliers.get(editChoice).getSupplierName(),suppliers.get(editChoice).getAddress(),suppliers.get(editChoice).getEmail(),suppliers.get(editChoice).getPhoneNumber());
             check = in.next();
             if (check.equalsIgnoreCase("Y")){
                 confirm = true;
@@ -623,8 +641,6 @@ public class Main {
         while (!confirm);
         return editChoice;
     }
-
- */
 
 
     //Manage Customers
