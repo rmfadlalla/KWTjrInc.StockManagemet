@@ -608,7 +608,7 @@ public class Main {
         }
         while (!ready);
         return new Supplier(nextSupplierID, sName, addr, email, phoneNo);
-    }//incomplete
+    }
 
     //List All Suppliers
     public static void printSuppliers(ArrayList<Supplier> suppliers){
