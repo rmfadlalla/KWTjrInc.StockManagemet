@@ -595,7 +595,7 @@ public class Main {
             System.out.print("Enter the Name of the Supplier: ");
             sName = in.next();
             System.out.print("Enter the Address of the Supplier: ");
-            addr = in.nextLine();
+            addr = in.next();
             System.out.print("Enter the E-mail of the Supplier: ");
             email = in.next();
             System.out.print("Enter the Phone Number of the Supplier: ");
