@@ -8,6 +8,8 @@ public class Main {
         final String PASSWORD = "Swordfish";
         ArrayList<Sale> sales = new ArrayList<>();
         int nextSaleID = 0;
+        ArrayList<Purchase> purchases = new ArrayList<>();
+        int nextPurchaseID = 0;
         ArrayList<Stock> stock = new ArrayList<>();
         int nextStockID = 0;
         ArrayList<Customer> customers = new ArrayList<>();
@@ -102,21 +104,33 @@ public class Main {
                         case 2: //Manage Purchases
                             boolean purchasesDone = false;
                             do {
+                                int purchaseIndex;
                                 System.out.println("View / Manage Purchases");
                                 System.out.printf("1: Enter Purchases%n2: View Purchases%n3: Edit Purchases%n4: Delete Purchases%n5: Exit%n");
-                                int purchacesChoice = in.nextInt();
-                                switch (purchacesChoice){
+                                int purchasesChoice = in.nextInt();
+                                switch (purchasesChoice){
                                     case 1: //Add Purchase
                                         System.out.println("Add Purchase");
+                                        purchases.add(newPurchase(nextPurchaseID));
+                                        nextPurchaseID++;
+                                        System.out.println("Purchase Added!");
                                         break;
                                     case 2: //View Purchases
                                         System.out.println("View Purchases");
+                                        printPurchases(purchases);
                                         break;
                                     case 3: //Edit Purchase
                                         System.out.println("Edit Purchase");
+                                        printPurchases(purchases);
+                                        purchaseIndex = chkPurchaseIndex(purchases);
+                                        purchases.set(purchaseIndex, newPurchase(purchases.get(purchaseIndex).getPurchaseID()));
+                                        System.out.println("Purchase Edited!");
                                         break;
                                     case 4: //Delete Purchase
                                         System.out.println("Delete Purchase");
+                                        printPurchases(purchases);
+                                        purchaseIndex = chkPurchaseIndex(purchases);
+                                        purchases.remove(purchaseIndex);
                                         break;
                                     case 5: //Exit
                                         System.out.println("Returning to Main Menu...");
@@ -307,8 +321,7 @@ public class Main {
             }
         }
         while (!ready);
-        Stock s = new Stock(nextStockID, iName, amount, supID, loc);
-        return s;
+        return new Stock(nextStockID, iName, amount, supID, loc);
     }
 
     //view all stock
@@ -427,8 +440,7 @@ public class Main {
             }
         }
         while (!ready);
-        Sale s = new Sale(nextSaleID, cID, iID, quant, price, day);
-        return s;
+        return new Sale(nextSaleID, cID, iID, quant, price, day);
     }
 
     //print all sales
@@ -479,29 +491,51 @@ public class Main {
     }
 
 
-    /*
+
     //Purchases
     //New Purchase
     public static Purchase newPurchase(int nextPurchaseID){
         Scanner in = new Scanner(System.in);
         boolean ready = false;
-    }//incomplete
+        int sID, iID;
+        double price;
+        String purchaseD, paymentD;
+        do{
+            System.out.print("Enter the Supplier ID: ");
+            sID = in.nextInt();
+            System.out.print("Enter the Item ID: ");
+            iID = in.nextInt();
+            System.out.print("Enter the total price of the purchase: ");
+            price = in.nextDouble();
+            System.out.print("Enter the date of the purchase (MM.DD.YYYY): ");
+            purchaseD = in.next();
+            System.out.print("Enter the date the purchase was paid for (MM.DD.YYYY): ");
+            paymentD = in.next();
+            System.out.println("Info Entered");
+            System.out.printf("Is this correct? %nSupplier ID:    %09d %nItem ID:        %09d %nTotal Price:    %6.2f %nPurchase Date: %s %nPayment Date:  %s %n(Y/N)", sID, iID, price, purchaseD, paymentD);
+            String input = in.next();
+            if (input.equalsIgnoreCase("Y")){
+                ready = true;
+            }
+        }
+        while (!ready);
+        return new Purchase(nextPurchaseID, sID, iID, price, purchaseD, paymentD);
+    }
 
     //List All Purchases
     public static void printPurchases(ArrayList<Purchase> purchases){
-
         if (purchases.size() > 0) {
             int i = 0;
-            System.out.println();
+            System.out.println("Index  Purchase ID   Supplier ID    ItemID         Total Price     Purchase Date     Payment Date");
             for (Purchase s:purchases) {
-                System.out.printf();
+                System.out.printf("%5d  %09d     %09d      %09d    %6.2f            %10s        %10s%n",i,s.getPurchaseID(),s.getSupplierID(),s.getItemID(),s.getTotalPrice(),s.getPurchaseDate(),s.getPaymentDate());
                 i++;
             }
         }
         else {
             System.out.println("This list is empty.");
         }
-    }//incomplete
+    }
 
     //Check Purchase Index
     public static int chkPurchaseIndex(ArrayList<Purchase> purchases) {
@@ -513,7 +547,7 @@ public class Main {
         do {
             do {
                 System.out.print("Enter the index number of the Purchase to be modified: ");
-                purchaseEditChoice = in.nextInt();
+                editChoice = in.nextInt();
                 if (!(editChoice < 0) && (editChoice < purchases.size())){
                     valid = true;
                 }
@@ -524,6 +558,7 @@ public class Main {
             while (!valid);
             System.out.println("Is this the correct entry?");
             //print info here
+            System.out.printf("Purchase ID: %09d %nSupplier ID: %09d %nItem ID: %09d %n Total Price: %6.2f %nPurchase Date: %s %nPayment Date: %s",purchases.get(editChoice).getPurchaseID() , purchases.get(editChoice).getSupplierID(), purchases.get(editChoice).getItemID(), purchases.get(editChoice).getTotalPrice(), purchases.get(editChoice).getPurchaseDate(), purchases.get(editChoice).getPaymentDate());
             System.out.println("(Y/N)");
             check = in.next();
             if (check.equalsIgnoreCase("Y")){
@@ -535,6 +570,7 @@ public class Main {
     }
 
 
+    /*
     //Suppliers
     //New Supplier
 
@@ -618,8 +654,7 @@ public class Main {
             }
         }
         while (!ready);
-        Customer c = new Customer(nextCustomerID,n,addr,phoneNo,email);
-        return c;
+        return new Customer(nextCustomerID,n,addr,phoneNo,email);
     }
 
     //list all customers
