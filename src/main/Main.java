@@ -266,7 +266,7 @@ public class Main {
                                         break;
                                     case 3: //Edit Customers
                                         System.out.println("Edit Customers");
-                                        if (customers.size()>0){
+                                        if (customers.size()>1){
                                             printCustomers(customers);
                                             customerIndex = chkCustomerIndex(customers);
                                             Customer c = newCustomer(customers.get(customerIndex).getCustomerID());
@@ -279,7 +279,7 @@ public class Main {
                                         break;
                                     case 4: //Delete Customers
                                         System.out.println("Delete Customers");
-                                        if (customers.size()>0){
+                                        if (customers.size()>1){
                                             printCustomers(customers);
                                             customerIndex = chkCustomerIndex(customers);
                                             customers.remove(customerIndex);
@@ -677,7 +677,7 @@ public class Main {
             System.out.print("Enter the customer's E-Mail Address: ");
             email = in.next();
             System.out.println("Info Entered");
-            System.out.printf("Is this correct?%nName: %s%nAddress: %s%nPhone Number: %s%nEmail Address: %s%n (Y/N)%n",n,addr,phoneNo,email);
+            System.out.printf("Is this correct?%nName: %s%nAddress: %s%nPhone Number: %s%nEmail Address: %s%n(Y/N)%n",n,addr,phoneNo,email);
             String input = in.next();
             if (input.equalsIgnoreCase("Y")){
                 ready = true;
