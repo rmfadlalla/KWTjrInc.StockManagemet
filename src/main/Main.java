@@ -6,12 +6,14 @@ public class Main {
     public static void main(String[] args) {
         final String USERNAME = "Admin";
         final String PASSWORD = "Swordfish";
-        ArrayList<Sale> sales = new ArrayList<>();
-        int nextSaleID = 0;
-        ArrayList<Purchase> purchases = new ArrayList<>();
-        int nextPurchaseID = 0;
         ArrayList<Stock> stock = new ArrayList<>();
         int nextStockID = 0;
+        ArrayList<Purchase> purchases = new ArrayList<>();
+        int nextPurchaseID = 0;
+        ArrayList<Supplier> suppliers = new ArrayList<>();
+        int nextSupplierID = 0;
+        ArrayList<Sale> sales = new ArrayList<>();
+        int nextSaleID = 0;
         ArrayList<Customer> customers = new ArrayList<>();
         customers.add(new Customer());
         int nextCustomerID = 1;
@@ -147,21 +149,33 @@ public class Main {
                         case 3: //Manage Suppliers
                             boolean suppliersDone = false;
                             do {
+                                int supplierIndex;
                                 System.out.println("View / Manage Suppliers");
                                 System.out.printf("1: Enter Suppliers%n2: View Suppliers%n3: Edit Suppliers%n4: Delete Suppliers%n5: Exit%n");
                                 int suppliersChoice = in.nextInt();
                                 switch (suppliersChoice){
                                     case 1: //Add Supplier
                                         System.out.println("Add Supplier");
+                                        suppliers.add(newSupplier(nextSupplierID));
+                                        nextSupplierID++;
+                                        System.out.println("Supplier Added!");
                                         break;
                                     case 2: //View Suppliers
                                         System.out.println("View Suppliers");
+                                        printSuppliers(suppliers);
                                         break;
                                     case 3: //Edit Supplier
                                         System.out.println("Edit Supplier");
+                                        printSuppliers(suppliers);
+                                        supplierIndex = chkSupplierIndex(suppliers);
+                                        suppliers.set(supplierIndex,newSupplier(suppliers.get(supplierIndex).getSupplierID()));
+                                        System.out.println("Supplier Edited!");
                                         break;
                                     case 4: //Delete Supplier
                                         System.out.println("Delete Supplier");
+                                        printSuppliers(suppliers);
+                                        supplierIndex = chkSupplierIndex(suppliers);
+                                        suppliers.remove(supplierIndex);
                                         break;
                                     case 5:
                                         System.out.println("Returning to Main Menu...");
