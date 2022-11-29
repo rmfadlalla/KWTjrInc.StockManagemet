@@ -617,7 +617,7 @@ public class Main {
             int i = 0;
             System.out.println("Index  Supplier ID    Supplier Name                   Address                                                  E-Mail                          Phone Number");
             for (Supplier s:suppliers) {
-                System.out.printf("%05d  %09d      %-30s  %-55s  %-30s  %-12s",i, s.getSupplierID(),s.getSupplierName(), s.getAddress(), s.getEmail(), s.getPhoneNumber());
+                System.out.printf("%05d  %09d      %-30s  %-55s  %-30s  %-12s %n",i, s.getSupplierID(),s.getSupplierName(), s.getAddress(), s.getEmail(), s.getPhoneNumber());
                 i++;
             }
         }
