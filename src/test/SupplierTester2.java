@@ -25,6 +25,16 @@ public class SupplierTester2 {
 
         ArrayList<Supplier> suppliers = new ArrayList<>();
         suppliers.add(Supplier1);
-
+        if (suppliers.size() > 0) {
+            int i = 0;
+            System.out.println("Index  Supplier ID    Supplier Name                   Address                                         E-Mail                 Phone Number");
+            for (Supplier s:suppliers) {
+                System.out.printf("%05d  %09d    %20s    %55s  %30  %12s",i, s.getSupplierID(),s.getSupplierName(), s.getAddress(), s.getEmail(), s.getPhoneNumber());
+                i++;
+            }
+        }
+        else {
+            System.out.println("This list is empty.");
+        }
     }
 }

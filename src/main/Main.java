@@ -570,10 +570,9 @@ public class Main {
     }
 
 
-    /*
+/*
     //Suppliers
     //New Supplier
-
     public static Supplier newSupplier(int nextSupplierID){
         Scanner in = new Scanner(System.in);
         boolean ready = false;
@@ -585,7 +584,7 @@ public class Main {
             int i = 0;
             System.out.println("Index  Customer ID    Name                           Address                                  Phone Number   E-Mail");
             for (Supplier s:suppliers) {
-                System.out.printf("",i,);
+                System.out.printf("%05d  %09d        %-20s  %-55s  %-30  %-12s",i, s.getSupplierID(),s.getSupplierName(), s.getAddress(), s.getEmail(), s.getPhoneNumber());
                 i++;
             }
         }
@@ -625,7 +624,7 @@ public class Main {
         return editChoice;
     }
 
-     */
+ */
 
 
     //Manage Customers
